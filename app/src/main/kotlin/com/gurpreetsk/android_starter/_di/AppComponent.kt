@@ -7,6 +7,7 @@ import com.gurpreetsk.android_starter._di.modules.AppModule
 import com.gurpreetsk.android_starter._di.modules.LogModule
 import com.gurpreetsk.android_starter._di.modules.NetworkModule
 import com.gurpreetsk.android_starter._di.modules.StorageModule
+import com.gurpreetsk.android_starter._schedulers.AppSchedulers
 import com.gurpreetsk.android_starter._storage.CachedRepository
 import com.gurpreetsk.android_starter._storage.LocalRepository
 import com.gurpreetsk.android_starter._storage.db.AppDatabase
@@ -24,6 +25,7 @@ import javax.inject.Singleton
 ]) interface AppComponent {
   fun timberTree(): Timber.Tree
 
+  fun schedulerProvider(): AppSchedulers
   fun appDatabase(): AppDatabase
   fun appSettings(): AppSettings
   fun localRepository(): LocalRepository
