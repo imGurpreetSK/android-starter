@@ -1,6 +1,7 @@
 package com.gurpreetsk.android_starter.di.modules
 
 import android.content.Context
+import com.gurpreetsk.android_starter.BuildConfig
 import com.gurpreetsk.android_starter._http.BigDecimalJsonAdapter
 import com.gurpreetsk.android_starter._http.RxSchedulersCallAdapterFactory
 import com.gurpreetsk.android_starter._http.StarterApi
@@ -20,20 +21,22 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 import java.math.BigDecimal
 import java.util.Date
+import javax.inject.Singleton
 
 private const val HTTP_DISK_CACHE_SIZE = 50 * 1000L // 50 MB
-const val BASE_URL = "app_base_url"
 
 @Module class NetworkModule {
-  @Provides fun provideBaseUrl(appSettings: AppSettings): String =
-      appSettings.getString(BASE_URL, "")
+  @Provides fun provideBaseUrl(): String =
+      BuildConfig.BASE_URL
 
-  @Provides fun provideHttpCache(context: Context): Cache {
+  @Provides @Singleton
+  fun provideHttpCache(context: Context): Cache {
     val cacheDir = File(context.cacheDir, "http")
     return Cache(cacheDir, HTTP_DISK_CACHE_SIZE)
   }
 
-  @Provides fun provideOkHttpClient(
+  @Provides @Singleton
+  fun provideOkHttpClient(
       cache: Cache,
       jwtInterceptor: Interceptor
   ): OkHttpClient {
@@ -56,7 +59,8 @@ const val BASE_URL = "app_base_url"
           .add(Date::class.java, Rfc3339DateJsonAdapter())
           .build()
 
-  @Provides fun provideRetrofit(
+  @Provides @Singleton
+  fun provideRetrofit(
       baseUrl: String,
       okHttpClient: OkHttpClient,
       callAdapterFactory: CallAdapter.Factory,
@@ -70,6 +74,7 @@ const val BASE_URL = "app_base_url"
         .build()
   }
 
-  @Provides fun provideStarterApi(retrofit: Retrofit): StarterApi =
+  @Provides @Singleton
+  fun provideStarterApi(retrofit: Retrofit): StarterApi =
       retrofit.create(StarterApi::class.java)
 }

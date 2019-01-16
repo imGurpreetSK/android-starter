@@ -18,7 +18,9 @@ android {
 
     vectorDrawables.useSupportLibrary = true
 
+    buildConfigField "String", "BASE_URL", "" // TODO(gs) - update base url.
     buildConfigField "int", "DB_VERSION", "1"
+
     javaCompileOptions {
       annotationProcessorOptions {
         arguments = ["room.schemaLocation": "$projectDir/db-schemas".toString()]
