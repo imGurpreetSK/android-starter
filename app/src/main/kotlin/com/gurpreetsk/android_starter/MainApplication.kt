@@ -6,7 +6,7 @@ import com.gurpreetsk.android_starter.di.DaggerAppComponent
 import com.gurpreetsk.android_starter.di.modules.AppModule
 import timber.log.Timber
 
-class MainApplication : Application() {
+open class MainApplication : Application() {
   private lateinit var component: AppComponent
 
   override fun onCreate() {
@@ -24,7 +24,7 @@ class MainApplication : Application() {
 
   fun component(): AppComponent = component
 
-  private fun setupDependencyInjection() : AppComponent = DaggerAppComponent.builder()
+  open fun setupDependencyInjection() : AppComponent = DaggerAppComponent.builder()
       .appModule(AppModule(this))
       .build()
 }
