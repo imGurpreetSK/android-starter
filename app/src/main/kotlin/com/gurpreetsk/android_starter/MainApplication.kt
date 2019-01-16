@@ -1,11 +1,13 @@
 package com.gurpreetsk.android_starter
 
+import android.annotation.SuppressLint
 import android.app.Application
 import com.gurpreetsk.android_starter._di.AppComponent
 import com.gurpreetsk.android_starter._di.DaggerAppComponent
 import com.gurpreetsk.android_starter._di.modules.AppModule
 import timber.log.Timber
 
+@SuppressLint("Registered")
 open class MainApplication : Application() {
   private lateinit var component: AppComponent
 
