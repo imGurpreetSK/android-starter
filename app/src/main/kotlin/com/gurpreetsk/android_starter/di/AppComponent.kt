@@ -2,6 +2,7 @@ package com.gurpreetsk.android_starter.di
 
 import android.content.Context
 import com.gurpreetsk.android_starter.MainApplication
+import com.gurpreetsk.android_starter._http.StarterApi
 import com.gurpreetsk.android_starter.di.modules.AppModule
 import com.gurpreetsk.android_starter.di.modules.LogModule
 import com.gurpreetsk.android_starter.di.modules.NetworkModule
@@ -23,6 +24,8 @@ import javax.inject.Singleton
 
   fun appDatabase(): AppDatabase
   fun appSettings(): AppSettings
+
+  fun apiService(): StarterApi
 
   companion object {
     fun obtain(context: Context): AppComponent =
