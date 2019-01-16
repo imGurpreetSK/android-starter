@@ -37,12 +37,10 @@ private const val HTTP_DISK_CACHE_SIZE = 50 * 1000L // 50 MB
 
   @Provides @Singleton
   fun provideOkHttpClient(
-      cache: Cache,
-      jwtInterceptor: Interceptor
+      cache: Cache
   ): OkHttpClient {
     val okHttpBuilder = OkHttpClient
         .Builder()
-        .addInterceptor(jwtInterceptor)
         .cache(cache)
 
     return okHttpBuilder
