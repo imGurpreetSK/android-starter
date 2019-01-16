@@ -7,6 +7,8 @@ import com.gurpreetsk.android_starter.di.modules.AppModule
 import com.gurpreetsk.android_starter.di.modules.LogModule
 import com.gurpreetsk.android_starter.di.modules.NetworkModule
 import com.gurpreetsk.android_starter.di.modules.StorageModule
+import com.gurpreetsk.android_starter.storage.CachedRepository
+import com.gurpreetsk.android_starter.storage.LocalRepository
 import com.gurpreetsk.android_starter.storage.db.AppDatabase
 import com.gurpreetsk.android_starter.storage.prefs.AppSettings
 import dagger.Component
@@ -24,6 +26,8 @@ import javax.inject.Singleton
 
   fun appDatabase(): AppDatabase
   fun appSettings(): AppSettings
+  fun localRepository(): LocalRepository
+  fun cachedRepository(): CachedRepository
 
   fun apiService(): StarterApi
 
