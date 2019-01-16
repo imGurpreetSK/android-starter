@@ -1,0 +1,83 @@
+buildscript {
+  ext {
+    versions = [
+        "ktx"                     : "1.0.1",
+        "coroutines"              : "1.0.1",
+        "coroutinesAndroid"       : "1.0.1",
+        "dagger"                  : "2.16",
+        "timber"                  : "4.7.1",
+        "moshi"                   : "1.6.0",
+        "okhttp"                  : "3.12.0",
+        "okhttpLoggingInterceptor": "3.11.0",
+        "retrofit"                : "2.5.0",
+        "rxkotlin"                : "2.3.0",
+        "rxjava"                  : "2.2.2",
+        "rxandroid"               : "2.1.0",
+        "rxrelay"                 : "2.1.0",
+        "room"                    : "2.0.0",
+        "stetho"                  : "1.5.0",
+        "appCompat"               : "1.0.2",
+        "material"                : "1.0.0",
+        "vectorDrawable"          : "1.0.1",
+        "constraintLayout"        : "2.0.0-alpha3"
+    ]
+
+    deps = [
+        "androidKtx"  : "androidx.core:core-ktx:${versions.ktx}",
+
+        "coroutines"  : [
+            "core"   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
+            "android": "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutinesAndroid}"
+        ],
+
+        "dagger"      : [
+            "core"    : "com.google.dagger:dagger:${versions.dagger}",
+            "compiler": "com.google.dagger:dagger-compiler:${versions.dagger}"
+        ],
+
+        "kotlinStdLib": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+
+        "timber"      : "com.jakewharton.timber:timber:${versions.timber}",
+
+        "moshi"       : [
+            "core"    : "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
+            "adapters": "com.squareup.moshi:moshi-adapters:${versions.moshi}",
+            "compiler": "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
+        ],
+
+        "okhttp"      : [
+            "core"              : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+            "loggingInterceptor": "com.squareup.okhttp3:logging-interceptor:${versions.okhttpLoggingInterceptor}"
+        ],
+
+        "retrofit"    : [
+            "core"         : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            "rxjavaAdapter": "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
+            "moshiAdapter" : "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
+        ],
+
+        "rx"          : [
+            "kotlin" : "io.reactivex.rxjava2:rxkotlin:${versions.rxkotlin}",
+            "java"   : "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
+            "android": "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}",
+            "relay"  : "com.jakewharton.rxrelay2:rxrelay:${versions.rxrelay}"
+        ],
+
+        "room"        : [
+            "core"     : "androidx.room:room-runtime:${versions.room}",
+            "rxAdapter": "androidx.room:room-rxjava2:${versions.room}",
+            "compiler" : "androidx.room:room-compiler:${versions.room}",
+            "testing"  : "androidx.room:room-testing:${versions.room}"
+        ],
+
+        "stetho"      : "com.facebook.stetho:stetho:${versions.stetho}",
+
+        "support"     : [
+            "appCompat"       : "androidx.appcompat:appcompat:${versions.appCompat}",
+            "material"        : "com.google.android.material:material:${versions.material}",
+            "vectorDrawable"  : "androidx.vectordrawable:vectordrawable:${versions.vectorDrawable}",
+            "constraintLayout": "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+        ]
+    ]
+  }
+}

@@ -3,6 +3,8 @@ apply plugin: "kotlin-android"
 apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
 
+apply from: "../gradle/dependencies.gradle"
+
 android {
   compileSdkVersion 28
 
@@ -73,58 +75,56 @@ dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
 
   // Android KTX
-  implementation "androidx.core:core-ktx:1.0.1"
+  implementation deps.androidKtx
 
   // Coroutines
   // TODO: Remove if not needed.
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1"
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1"
+  implementation deps.coroutines.core
+  implementation deps.coroutines.android
 
   // Dagger 2
-  implementation "com.google.dagger:dagger:2.16"
-  kapt "com.google.dagger:dagger-compiler:2.16"
+  implementation deps.dagger.core
+  kapt           deps.dagger.compiler
 
   // Kotlin stdlib
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation deps.kotlinStdLib
 
   // Logging
-  implementation "com.jakewharton.timber:timber:4.7.1"
+  implementation deps.timber
 
   // Moshi
-  implementation "com.squareup.moshi:moshi-kotlin:1.6.0"
-  implementation "com.squareup.moshi:moshi-adapters:1.6.0"
-  kapt "com.squareup.moshi:moshi-kotlin-codegen:1.6.0"
+  implementation deps.moshi.core
+  implementation deps.moshi.adapters
+  kapt           deps.moshi.compiler
 
   // okHttp
-  implementation "com.squareup.okhttp3:okhttp:3.12.0"
-  implementation "com.squareup.okhttp3:logging-interceptor:3.11.0"
+  implementation deps.okhttp.core
+  implementation deps.okhttp.loggingInterceptor
 
   // Retrofit
-  implementation "com.squareup.retrofit2:retrofit:2.5.0"
-  implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
-  implementation "com.squareup.retrofit2:converter-moshi:2.5.0"
+  implementation deps.retrofit.core
+  implementation deps.retrofit.rxjavaAdapter
+  implementation deps.retrofit.moshiAdapter
 
   // Reactive Extensions
-  implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
-  implementation "io.reactivex.rxjava2:rxjava:2.2.2"
-  implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
-  implementation "com.jakewharton.rxrelay2:rxrelay:2.1.0"
+  implementation deps.rx.kotlin
+  implementation deps.rx.java
+  implementation deps.rx.android
+  implementation deps.rx.relay
 
   // Room
-  implementation "androidx.room:room-runtime:2.0.0"
-  implementation "androidx.room:room-rxjava2:2.0.0"
-  kapt "androidx.room:room-compiler:2.0.0"
-  testImplementation "androidx.room:room-testing:2.0.0"
+  implementation deps.room.core
+  implementation deps.room.rxAdapter
+  kapt           deps.room.compiler
 
   // Stetho
-  debugImplementation "com.facebook.stetho:stetho:1.5.0"
-  debugImplementation "com.facebook.stetho:stetho-okhttp3:1.5.0"
+  debugImplementation deps.stetho
 
   // Support
-  implementation "androidx.appcompat:appcompat:1.0.2"
-  implementation "com.google.android.material:material:1.0.0"
-  implementation "androidx.vectordrawable:vectordrawable:1.0.1"
-  implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
+  implementation deps.support.appCompat
+  implementation deps.support.material
+  implementation deps.support.vectorDrawable
+  implementation deps.support.constraintLayout
 
   /* -----  Testing  ----- */
 
@@ -143,6 +143,9 @@ dependencies {
   androidTestImplementation "androidx.test:runner:1.1.1"
   androidTestImplementation "androidx.test.ext:junit:1.1.0"
   androidTestImplementation "androidx.test.espresso:espresso-core:3.1.1"
+
+  // Misc
+  testImplementation deps.room.testing
 }
 
 android {
