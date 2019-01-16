@@ -1,4 +1,4 @@
-package com.gurpreetsk.android_starter.storage.prefs
+package com.gurpreetsk.android_starter._storage.prefs
 
 interface AppSettings {
   fun putString(key: String, value: String)

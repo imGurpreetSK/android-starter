@@ -7,10 +7,10 @@ import com.gurpreetsk.android_starter._di.modules.AppModule
 import com.gurpreetsk.android_starter._di.modules.LogModule
 import com.gurpreetsk.android_starter._di.modules.NetworkModule
 import com.gurpreetsk.android_starter._di.modules.StorageModule
-import com.gurpreetsk.android_starter.storage.CachedRepository
-import com.gurpreetsk.android_starter.storage.LocalRepository
-import com.gurpreetsk.android_starter.storage.db.AppDatabase
-import com.gurpreetsk.android_starter.storage.prefs.AppSettings
+import com.gurpreetsk.android_starter._storage.CachedRepository
+import com.gurpreetsk.android_starter._storage.LocalRepository
+import com.gurpreetsk.android_starter._storage.db.AppDatabase
+import com.gurpreetsk.android_starter._storage.prefs.AppSettings
 import dagger.Component
 import timber.log.Timber
 import javax.inject.Singleton

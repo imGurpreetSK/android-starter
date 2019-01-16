@@ -1,4 +1,4 @@
-package com.gurpreetsk.android_starter.storage.prefs
+package com.gurpreetsk.android_starter._storage.prefs
 
 import android.content.Context
 import android.content.SharedPreferences

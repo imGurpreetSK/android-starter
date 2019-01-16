@@ -1,4 +1,4 @@
-package com.gurpreetsk.android_starter.storage.db
+package com.gurpreetsk.android_starter._storage.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
