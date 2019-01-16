@@ -1,4 +1,4 @@
-package com.gurpreetsk.android_starter.di.modules
+package com.gurpreetsk.android_starter._di.modules
 
 import android.content.Context
 import androidx.room.Room

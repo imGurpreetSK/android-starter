@@ -1,9 +1,9 @@
 package com.gurpreetsk.android_starter
 
 import android.app.Application
-import com.gurpreetsk.android_starter.di.AppComponent
-import com.gurpreetsk.android_starter.di.DaggerAppComponent
-import com.gurpreetsk.android_starter.di.modules.AppModule
+import com.gurpreetsk.android_starter._di.AppComponent
+import com.gurpreetsk.android_starter._di.DaggerAppComponent
+import com.gurpreetsk.android_starter._di.modules.AppModule
 import timber.log.Timber
 
 open class MainApplication : Application() {

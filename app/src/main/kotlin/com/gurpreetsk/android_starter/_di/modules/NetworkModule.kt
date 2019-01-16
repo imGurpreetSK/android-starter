@@ -1,4 +1,4 @@
-package com.gurpreetsk.android_starter.di.modules
+package com.gurpreetsk.android_starter._di.modules
 
 import android.content.Context
 import com.gurpreetsk.android_starter.BuildConfig
@@ -6,13 +6,11 @@ import com.gurpreetsk.android_starter._http.BigDecimalJsonAdapter
 import com.gurpreetsk.android_starter._http.RxSchedulersCallAdapterFactory
 import com.gurpreetsk.android_starter._http.StarterApi
 import com.gurpreetsk.android_starter._http.utils.enableTls12OnPreLollipop
-import com.gurpreetsk.android_starter.storage.prefs.AppSettings
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
