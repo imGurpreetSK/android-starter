@@ -20,7 +20,8 @@ buildscript {
         "appCompat"               : "1.0.2",
         "material"                : "1.0.0",
         "vectorDrawable"          : "1.0.1",
-        "constraintLayout"        : "2.0.0-alpha3"
+        "constraintLayout"        : "2.0.0-alpha3",
+        "leakCanary"              : "1.6.3"
     ]
 
     deps = [
@@ -38,7 +39,10 @@ buildscript {
 
         "kotlinStdLib": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
 
-        "timber"      : "com.jakewharton.timber:timber:${versions.timber}",
+        "leakCanary": [
+            "release": "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}",
+            "debug"  : "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
+        ],
 
         "moshi"       : [
             "core"    : "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
@@ -79,7 +83,9 @@ buildscript {
             "material"        : "com.google.android.material:material:${versions.material}",
             "vectorDrawable"  : "androidx.vectordrawable:vectordrawable:${versions.vectorDrawable}",
             "constraintLayout": "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
-        ]
+        ],
+
+        "timber"      : "com.jakewharton.timber:timber:${versions.timber}",
     ]
   }
 }

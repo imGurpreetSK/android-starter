@@ -91,6 +91,10 @@ dependencies {
   // Kotlin stdlib
   implementation deps.kotlinStdLib
 
+  // Leak canary
+  debugImplementation   deps.leakCanary.debug
+  releaseImplementation deps.leakCanary.release
+
   // Logging
   implementation deps.timber
 

@@ -5,7 +5,7 @@ import android.app.Application
 import com.gurpreetsk.android_starter._di.AppComponent
 import com.gurpreetsk.android_starter._di.DaggerAppComponent
 import com.gurpreetsk.android_starter._di.modules.AppModule
-import timber.log.Timber
+import com.squareup.leakcanary.LeakCanary
 
 @SuppressLint("Registered")
 open class MainApplication : Application() {
@@ -13,6 +13,12 @@ open class MainApplication : Application() {
 
   override fun onCreate() {
     super.onCreate()
+    if (LeakCanary.isInAnalyzerProcess(this)) {
+      // This process is dedicated to LeakCanary for heap analysis.
+      // You should not init your app in this process.
+      return
+    }
+    LeakCanary.install(this)
 
     component = setupDependencyInjection()
     setupLibraries()
