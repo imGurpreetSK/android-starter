@@ -15,7 +15,6 @@ import io.reactivex.schedulers.Schedulers
 
 private const val KEY_MODEL_STATE = "model_state"
 
-// TODO(gs) - Evaluate Mobius/OneWay.
 abstract class MviActivity<T : Parcelable> : AppCompatActivity() {
   protected val disposables: CompositeDisposable by lazy { CompositeDisposable() }
   protected val lifecycle: PublishRelay<MviLifecycle> by lazy { PublishRelay.create<MviLifecycle>() }
@@ -84,7 +83,6 @@ abstract class MviActivity<T : Parcelable> : AppCompatActivity() {
         .toObservable()
 
     disposables += bind(statesObservable)
-        .subscribeOn(Schedulers.io()) // TODO(gs) - Evaluate.
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe {
           stateRelay.accept(it)
