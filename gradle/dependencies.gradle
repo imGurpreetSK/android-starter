@@ -40,8 +40,8 @@ buildscript {
         "kotlinStdLib": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
 
         "leakCanary": [
-            "release": "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}",
-            "debug"  : "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
+            "release": "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}",
+            "debug"  : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
         ],
 
         "moshi"       : [
