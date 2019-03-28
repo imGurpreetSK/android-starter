@@ -2,11 +2,11 @@ package com.gurpreetsk.android_starter._di
 
 import android.content.Context
 import com.gurpreetsk.android_starter.MainApplication
-import com.gurpreetsk.android_starter._http.StarterApi
 import com.gurpreetsk.android_starter._di.modules.AppModule
 import com.gurpreetsk.android_starter._di.modules.LogModule
 import com.gurpreetsk.android_starter._di.modules.NetworkModule
 import com.gurpreetsk.android_starter._di.modules.StorageModule
+import com.gurpreetsk.android_starter._http.StarterApi
 import com.gurpreetsk.android_starter._schedulers.AppSchedulers
 import com.gurpreetsk.android_starter._storage.CachedRepository
 import com.gurpreetsk.android_starter._storage.LocalRepository
@@ -22,7 +22,8 @@ import javax.inject.Singleton
   LogModule::class,
   NetworkModule::class,
   StorageModule::class
-]) interface AppComponent {
+])
+interface AppComponent {
   fun timberTree(): Timber.Tree
 
   fun schedulerProvider(): AppSchedulers
