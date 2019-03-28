@@ -73,8 +73,17 @@ kapt {
   generateStubs = true
 }
 
+repositories {
+  jcenter()
+}
+
+configurations {
+  ktlint
+}
+
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
+  ktlint "com.github.shyiko:ktlint:0.31.0"
 
   // Android KTX
   implementation deps.androidKtx
@@ -162,3 +171,5 @@ android {
     }
   }
 }
+
+apply from: "../gradle/ktlint.gradle"
