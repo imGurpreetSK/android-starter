@@ -6,6 +6,7 @@ import com.gurpreetsk.android_starter._di.AppComponent
 import com.gurpreetsk.android_starter._di.DaggerAppComponent
 import com.gurpreetsk.android_starter._di.modules.AppModule
 import com.squareup.leakcanary.LeakCanary
+import timber.log.Timber
 
 @SuppressLint("Registered")
 open class MainApplication : Application() {
