@@ -1,5 +1,6 @@
 package com.gurpreetsk.android_starter._mvi
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -27,6 +28,11 @@ abstract class MviFragment<T : Parcelable> : Fragment() {
 
   private val stateRelay: BehaviorRelay<T> by lazy { BehaviorRelay.create<T>() }
   private lateinit var lifecycleEvent: MviLifecycle
+
+  /**
+   * Inject self into Dagger graph.
+   */
+  open fun injectSelf() {}
 
   /**
    * Return a layout resource used in this [android.app.Activity].
@@ -66,6 +72,11 @@ abstract class MviFragment<T : Parcelable> : Fragment() {
    * @param state The state that was recently emitted by the model.
    */
   protected abstract fun effects(state: T)
+
+  override fun onAttach(context: Context?) {
+    super.onAttach(context)
+    injectSelf()
+  }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     return inflater.inflate(getLayoutRes(), container, false)

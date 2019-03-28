@@ -26,6 +26,11 @@ abstract class MviActivity<T : Parcelable> : AppCompatActivity() {
   private lateinit var lifecycleEvent: MviLifecycle
 
   /**
+   * Inject self into Dagger graph.
+   */
+  open fun injectSelf() {}
+
+  /**
    * Return a layout resource used in this [android.app.Activity].
    */
   @LayoutRes abstract fun getLayoutRes(): Int
@@ -66,6 +71,7 @@ abstract class MviActivity<T : Parcelable> : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    injectSelf()
     setContentView(getLayoutRes())
     restoreLastKnownState(savedInstanceState)
 
