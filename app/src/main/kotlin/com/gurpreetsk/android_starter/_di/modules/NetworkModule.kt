@@ -23,17 +23,17 @@ import javax.inject.Singleton
 
 private const val HTTP_DISK_CACHE_SIZE = 50 * 1000L // 50 MB
 
-@Module class NetworkModule {
-  @Provides fun provideBaseUrl(): String =
+@Module object NetworkModule {
+  @JvmStatic @Provides fun provideBaseUrl(): String =
       BuildConfig.BASE_URL
 
-  @Provides @Singleton
+  @JvmStatic @Provides @Singleton
   fun provideHttpCache(context: Context): Cache {
     val cacheDir = File(context.cacheDir, "http")
     return Cache(cacheDir, HTTP_DISK_CACHE_SIZE)
   }
 
-  @Provides @Singleton
+  @JvmStatic @Provides @Singleton
   fun provideOkHttpClient(
       cache: Cache
   ): OkHttpClient {
@@ -46,16 +46,16 @@ private const val HTTP_DISK_CACHE_SIZE = 50 * 1000L // 50 MB
         .build()
   }
 
-  @Provides fun provideCallAdapterFactory(): CallAdapter.Factory =
+  @JvmStatic @Provides fun provideCallAdapterFactory(): CallAdapter.Factory =
       RxJava2CallAdapterFactory.create()
 
-  @Provides fun provideMoshi(): Moshi =
+  @JvmStatic @Provides fun provideMoshi(): Moshi =
       Moshi.Builder()
           .add(BigDecimal::class.java, BigDecimalJsonAdapter())
           .add(Date::class.java, Rfc3339DateJsonAdapter())
           .build()
 
-  @Provides @Singleton
+  @JvmStatic @Provides @Singleton
   fun provideRetrofit(
       baseUrl: String,
       okHttpClient: OkHttpClient,
@@ -70,7 +70,7 @@ private const val HTTP_DISK_CACHE_SIZE = 50 * 1000L // 50 MB
         .build()
   }
 
-  @Provides @Singleton
+  @JvmStatic @Provides @Singleton
   fun provideStarterApi(retrofit: Retrofit): StarterApi =
       retrofit.create(StarterApi::class.java)
 }

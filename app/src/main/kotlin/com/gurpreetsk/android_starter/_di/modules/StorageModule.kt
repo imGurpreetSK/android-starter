@@ -14,20 +14,20 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module class StorageModule {
-  @Provides @Singleton
+@Module object StorageModule {
+  @JvmStatic @Provides @Singleton
   fun provideAppDatabase(context: Context): AppDatabase =
       Room.databaseBuilder(context, AppDatabase::class.java, DB_NAME).build()
 
-  @Provides @Singleton
+  @JvmStatic @Provides @Singleton
   fun appSettings(context: Context): AppSettings =
       SharedPreferencesAppSettings(context)
 
-  @Provides @Singleton
+  @JvmStatic @Provides @Singleton
   fun localRepository(): LocalRepository =
       RoomRepository()
 
-  @Provides @Singleton
+  @JvmStatic @Provides @Singleton
   fun cachedRepository(): CachedRepository =
       RoomRetrofitRepository()
 }
