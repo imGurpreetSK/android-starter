@@ -8,8 +8,7 @@ import com.gurpreetsk.android_starter._di.modules.NetworkModule
 import com.gurpreetsk.android_starter._di.modules.StorageModule
 import com.gurpreetsk.android_starter._http.StarterApi
 import com.gurpreetsk.android_starter._schedulers.AppSchedulers
-import com.gurpreetsk.android_starter._storage.CachedRepository
-import com.gurpreetsk.android_starter._storage.LocalRepository
+import com.gurpreetsk.android_starter._storage.Repository
 import com.gurpreetsk.android_starter._storage.db.AppDatabase
 import com.gurpreetsk.android_starter._storage.prefs.AppSettings
 import dagger.Component
@@ -29,8 +28,7 @@ interface AppComponent {
   fun schedulerProvider(): AppSchedulers
   fun appDatabase(): AppDatabase
   fun appSettings(): AppSettings
-  fun localRepository(): LocalRepository
-  fun cachedRepository(): CachedRepository
+  fun repository(): Repository
 
   fun apiService(): StarterApi
 
