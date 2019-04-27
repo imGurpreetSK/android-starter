@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "05a7c08a8920a7dd48cd34d09fa1b015",
+    "identityHash": "5666c5e4df60d3de1e60d5164f49539c",
     "entities": [
       {
-        "tableName": "User",
+        "tableName": "Dummy",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
           {
@@ -27,7 +27,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"05a7c08a8920a7dd48cd34d09fa1b015\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"5666c5e4df60d3de1e60d5164f49539c\")"
     ]
   }
 }

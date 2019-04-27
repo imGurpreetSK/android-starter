@@ -5,9 +5,9 @@ import androidx.room.RoomDatabase
 import com.gurpreetsk.android_starter.BuildConfig
 
 @Database(
-    entities = [User::class],
+    entities = [Dummy::class],
     version = BuildConfig.DB_VERSION
 )
 abstract class AppDatabase : RoomDatabase() {
-  abstract fun userDao(): UserDao
+  abstract fun userDao(): DummyDao
 }
