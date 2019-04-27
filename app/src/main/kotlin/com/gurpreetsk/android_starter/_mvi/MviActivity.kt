@@ -17,7 +17,7 @@ private const val KEY_MODEL_STATE = "model_state"
 
 abstract class MviActivity<T : Parcelable> : AppCompatActivity() {
   protected val disposables: CompositeDisposable by lazy { CompositeDisposable() }
-  protected val lifecycle: PublishRelay<MviLifecycle> by lazy { PublishRelay.create<MviLifecycle>() }
+  protected val lifecycle: BehaviorRelay<MviLifecycle> by lazy { BehaviorRelay.create<MviLifecycle>() }
 
   protected val lastKnownState: T?
     get() = stateRelay.value
@@ -88,6 +88,9 @@ abstract class MviActivity<T : Parcelable> : AppCompatActivity() {
         .toFlowable(BackpressureStrategy.LATEST)
         .toObservable()
 
+    // Lifecycle event
+    lifecycle.accept(lifecycleEvent)
+
     disposables += bind(statesObservable)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe {
@@ -95,9 +98,6 @@ abstract class MviActivity<T : Parcelable> : AppCompatActivity() {
           effects(it)
         }
     postBind()
-
-    // Lifecycle event
-    lifecycle.accept(lifecycleEvent)
   }
 
   override fun onStop() {
