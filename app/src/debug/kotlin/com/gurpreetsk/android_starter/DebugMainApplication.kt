@@ -10,9 +10,7 @@ class DebugMainApplication : MainApplication() {
   override fun onCreate() {
     super.onCreate()
 
-    if (BuildConfig.DEBUG) {
-      Stetho.initializeWithDefaults(this)
-    }
+    Stetho.initializeWithDefaults(this)
   }
 
   override fun getAppComponent(): AppComponent {
