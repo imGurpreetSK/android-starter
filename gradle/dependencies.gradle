@@ -1,9 +1,13 @@
 buildscript {
   ext {
     versions = [
+        "minSdkVersion"           : 19,
+        "targetSdkVersion"        : 28,
+
         "ktx"                     : "1.0.1",
         "coroutines"              : "1.0.1",
         "coroutinesAndroid"       : "1.0.1",
+        "chuck"                   : "1.1.0",
         "dagger"                  : "2.21",
         "timber"                  : "4.7.1",
         "moshi"                   : "1.6.0",
@@ -32,6 +36,11 @@ buildscript {
             "android": "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutinesAndroid}"
         ],
 
+        "chuck"       : [
+            "operational": "com.readystatesoftware.chuck:library:${versions.chuck}",
+            "noOp"       : "com.readystatesoftware.chuck:library-no-op:${versions.chuck}"
+        ],
+
         "dagger"      : [
             "core"    : "com.google.dagger:dagger:${versions.dagger}",
             "compiler": "com.google.dagger:dagger-compiler:${versions.dagger}"
@@ -39,7 +48,7 @@ buildscript {
 
         "kotlinStdLib": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
 
-        "leakCanary": [
+        "leakCanary"  : [
             "release": "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}",
             "debug"  : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
         ],

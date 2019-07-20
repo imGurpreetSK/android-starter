@@ -6,6 +6,7 @@ import com.gurpreetsk.android_starter._http.BigDecimalJsonAdapter
 import com.gurpreetsk.android_starter._http.RxSchedulersCallAdapterFactory
 import com.gurpreetsk.android_starter._http.StarterApi
 import com.gurpreetsk.android_starter._http.utils.enableTls12OnPreLollipop
+import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import dagger.Module
@@ -35,11 +36,13 @@ private const val HTTP_DISK_CACHE_SIZE = 50 * 1000L // 50 MB
 
   @JvmStatic @Provides @Singleton
   fun provideOkHttpClient(
+      context: Context,
       cache: Cache
   ): OkHttpClient {
     val okHttpBuilder = OkHttpClient
         .Builder()
         .cache(cache)
+        .addInterceptor(ChuckInterceptor(context))
 
     return okHttpBuilder
         .enableTls12OnPreLollipop()

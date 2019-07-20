@@ -10,8 +10,8 @@ android {
 
   defaultConfig {
     applicationId "com.gurpreetsk.android_starter"
-    minSdkVersion 19
-    targetSdkVersion 28
+    minSdkVersion versions.minSdkVersion
+    targetSdkVersion versions.targetSdkVersion
     multiDexEnabled true
     versionCode 1
     versionName "0.0.1"
@@ -92,6 +92,10 @@ dependencies {
   // TODO: Remove if not needed.
   implementation deps.coroutines.core
   implementation deps.coroutines.android
+
+  // Chuck
+  debugImplementation   deps.chuck.operational
+  releaseImplementation deps.chuck.noOp
 
   // Dagger 2
   implementation deps.dagger.core
