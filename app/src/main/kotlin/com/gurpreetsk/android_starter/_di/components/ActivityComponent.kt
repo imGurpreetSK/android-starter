@@ -9,10 +9,10 @@ import dagger.Component
 @ActivityScope
 @Component(dependencies = [AppComponent::class])
 interface ActivityComponent {
-  // TODO: Define contract
+    // TODO: Define contract
 
-  companion object {
-    fun obtain(context: Context): ActivityComponent =
-        (context.applicationContext as MainApplication).activityComponent()
-  }
+    companion object {
+        fun obtain(context: Context): ActivityComponent =
+                (context.applicationContext as MainApplication).activityComponent()
+    }
 }

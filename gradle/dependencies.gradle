@@ -1,100 +1,131 @@
 buildscript {
-  ext {
-    versions = [
-        "minSdkVersion"           : 19,
-        "targetSdkVersion"        : 28,
+    ext {
+        versions = [
+                "minSdkVersion"           : 21,
+                "targetSdkVersion"        : 29,
+                "compileSdkVersion"       : 29,
 
-        "ktx"                     : "1.0.1",
-        "coroutines"              : "1.3.0",
-        "coroutinesAndroid"       : "1.3.0",
-        "chuck"                   : "1.1.0",
-        "dagger"                  : "2.21",
-        "timber"                  : "4.7.1",
-        "moshi"                   : "1.6.0",
-        "okhttp"                  : "3.14.0",
-        "okhttpLoggingInterceptor": "3.14.0",
-        "retrofit"                : "2.5.0",
-        "rxkotlin"                : "2.3.0",
-        "rxjava"                  : "2.2.8",
-        "rxandroid"               : "2.1.1",
-        "rxrelay"                 : "2.1.0",
-        "rxbindings"              : "3.0.0-alpha2",
-        "room"                    : "2.0.0",
-        "stetho"                  : "1.5.1",
-        "appCompat"               : "1.0.2",
-        "material"                : "1.0.0",
-        "vectorDrawable"          : "1.0.1",
-        "constraintLayout"        : "2.0.0-alpha3",
-        "leakCanary"              : "1.6.3"
-    ]
+                "ktx"                     : "1.0.1",
+                "coroutines"              : "1.3.0",
+                "coroutinesAndroid"       : "1.3.0",
+                "chuck"                   : "1.1.0",
+                "dagger"                  : "2.21",
+                "logging"                 : "4.7.1",
+                "moshi"                   : "1.6.0",
+                "okhttp"                  : "4.3.1",
+                "okhttpLoggingInterceptor": "3.14.0",
+                "retrofit"                : "2.7.1",
+                "rxkotlin"                : "2.3.0",
+                "rxjava"                  : "2.2.8",
+                "rxandroid"               : "2.1.1",
+                "rxrelay"                 : "2.1.0",
+                "rxbindings"              : "3.0.0-alpha2",
+                "room"                    : "2.0.0",
+                "stetho"                  : "1.5.1",
+                "appCompat"               : "1.0.2",
+                "material"                : "1.0.0",
+                "vectorDrawable"          : "1.0.1",
+                "constraintLayout"        : "2.0.0-alpha3",
+                "leakCanary"              : "2.2",
+                "preferences"             : "1.1.0",
+                "fragments"               : "1.2.1",
 
-    deps = [
-        "androidKtx"  : "androidx.core:core-ktx:${versions.ktx}",
+                // Testing
+                "truth"                   : "1.0.1",
+                "junit5"                  : "5.5.2",
+                "androidxRunner"          : "1.2.0",
+                "androidxJunit"           : "1.1.1",
+                "espressoCore"            : "3.2.0",
+                "mockitoKotlin"           : "2.2.0",
+        ]
 
-        "coroutines"  : [
-            "core"   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
-            "android": "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutinesAndroid}"
-        ],
+        deps = [
+                "androidx"    : [
+                        "ktx"        : "androidx.core:core-ktx:${versions.ktx}",
+                        "preferences": "androidx.preference:preference-ktx:${versions.preferences}",
+                        "fragments"  : "androidx.fragment:fragment-ktx:${versions.fragments}",
+                ],
 
-        "chuck"       : [
-            "operational": "com.readystatesoftware.chuck:library:${versions.chuck}",
-            "noOp"       : "com.readystatesoftware.chuck:library-no-op:${versions.chuck}"
-        ],
+                "coroutines"  : [
+                        "core"   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
+                        "android": "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutinesAndroid}"
+                ],
 
-        "dagger"      : [
-            "core"    : "com.google.dagger:dagger:${versions.dagger}",
-            "compiler": "com.google.dagger:dagger-compiler:${versions.dagger}"
-        ],
+                "chuck"       : [
+                        "operational": "com.readystatesoftware.chuck:library:${versions.chuck}",
+                        "noOp"       : "com.readystatesoftware.chuck:library-no-op:${versions.chuck}"
+                ],
 
-        "kotlinStdLib": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+                "dagger"      : [
+                        "core"    : "com.google.dagger:dagger:${versions.dagger}",
+                        "compiler": "com.google.dagger:dagger-compiler:${versions.dagger}"
+                ],
 
-        "leakCanary"  : [
-            "release": "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}",
-            "debug"  : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
-        ],
+                "kotlinStdLib": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
 
-        "moshi"       : [
-            "core"    : "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
-            "adapters": "com.squareup.moshi:moshi-adapters:${versions.moshi}",
-            "compiler": "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
-        ],
+                "leakCanary"  : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}",
 
-        "okhttp"      : [
-            "core"              : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
-            "loggingInterceptor": "com.squareup.okhttp3:logging-interceptor:${versions.okhttpLoggingInterceptor}"
-        ],
+                "logging"     : "com.jakewharton.timber:timber:${versions.logging}",
 
-        "retrofit"    : [
-            "core"         : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
-            "rxjavaAdapter": "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
-            "moshiAdapter" : "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
-        ],
+                "moshi"       : [
+                        "core"    : "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
+                        "adapters": "com.squareup.moshi:moshi-adapters:${versions.moshi}",
+                        "compiler": "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
+                ],
 
-        "rx"          : [
-            "kotlin"  : "io.reactivex.rxjava2:rxkotlin:${versions.rxkotlin}",
-            "java"    : "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
-            "android" : "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}",
-            "relay"   : "com.jakewharton.rxrelay2:rxrelay:${versions.rxrelay}",
-            "bindings": "com.jakewharton.rxbinding3:rxbinding:${versions.rxbindings}"
-        ],
+                "okhttp"      : [
+                        "core"              : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+                        "loggingInterceptor": "com.squareup.okhttp3:logging-interceptor:${versions.okhttpLoggingInterceptor}"
+                ],
 
-        "room"        : [
-            "core"     : "androidx.room:room-runtime:${versions.room}",
-            "rxAdapter": "androidx.room:room-rxjava2:${versions.room}",
-            "compiler" : "androidx.room:room-compiler:${versions.room}",
-            "testing"  : "androidx.room:room-testing:${versions.room}"
-        ],
+                "retrofit"    : [
+                        "core"         : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                        "rxjavaAdapter": "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
+                        "moshiAdapter" : "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
+                ],
 
-        "stetho"      : "com.facebook.stetho:stetho:${versions.stetho}",
+                "rx"          : [
+                        "kotlin"  : "io.reactivex.rxjava2:rxkotlin:${versions.rxkotlin}",
+                        "java"    : "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
+                        "android" : "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}",
+                        "relay"   : "com.jakewharton.rxrelay2:rxrelay:${versions.rxrelay}",
+                        "bindings": "com.jakewharton.rxbinding3:rxbinding:${versions.rxbindings}"
+                ],
 
-        "support"     : [
-            "appCompat"       : "androidx.appcompat:appcompat:${versions.appCompat}",
-            "material"        : "com.google.android.material:material:${versions.material}",
-            "vectorDrawable"  : "androidx.vectordrawable:vectordrawable:${versions.vectorDrawable}",
-            "constraintLayout": "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
-        ],
+                "room"        : [
+                        "core"     : "androidx.room:room-runtime:${versions.room}",
+                        "rxAdapter": "androidx.room:room-rxjava2:${versions.room}",
+                        "compiler" : "androidx.room:room-compiler:${versions.room}",
+                        "testing"  : "androidx.room:room-testing:${versions.room}"
+                ],
 
-        "timber"      : "com.jakewharton.timber:timber:${versions.timber}",
-    ]
-  }
+                "sqldelight"  : "com.squareup.sqldelight:android-driver:$sqldelight_version",
+
+                "stetho"      : "com.facebook.stetho:stetho:${versions.stetho}",
+
+                "support"     : [
+                        "appCompat"       : "androidx.appcompat:appcompat:${versions.appCompat}",
+                        "material"        : "com.google.android.material:material:${versions.material}",
+                        "vectorDrawable"  : "androidx.vectordrawable:vectordrawable:${versions.vectorDrawable}",
+                        "constraintLayout": "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}",
+                ],
+        ]
+
+        testDeps = [
+                "unit"   : [
+                        "UnitTestingCore": "org.junit.jupiter:junit-jupiter-api:${versions.junit5}",
+                        "parameterized"  : "org.junit.jupiter:junit-jupiter-params:${versions.junit5}",
+                        "engine"         : "org.junit.jupiter:junit-jupiter-engine:${versions.junit5}",
+                ],
+
+                "android": [
+                        "androidRunner"         : "androidx.test:runner:${versions.androidxRunner}",
+                        "androidUnitTestingCore": "androidx.test.ext:junit:${versions.androidxJunit}",
+                        "espressoCore"          : "androidx.test.espresso:espresso-core:${versions.espressoCore}",
+                ],
+
+                "truth"          : "com.google.truth:truth:${versions.truth}",
+                "mockito": "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlin}",
+        ]
+    }
 }

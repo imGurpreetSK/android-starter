@@ -9,9 +9,9 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
-  AppModule::class,
-  DebugLogModule::class,
-  NetworkModule::class,
-  StorageModule::class
+    AppModule::class,
+    DebugLogModule::class,
+    NetworkModule::class,
+    StorageModule::class
 ])
 interface DebugAppComponent : AppComponent

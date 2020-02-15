@@ -9,10 +9,10 @@ import dagger.Component
 @FragmentScope
 @Component(dependencies = [AppComponent::class])
 interface FragmentComponent {
-  // TODO: Define contract
+    // TODO: Define contract
 
-  companion object {
-    fun obtain(context: Context): FragmentComponent =
-        (context.applicationContext as MainApplication).fragmentComponent()
-  }
+    companion object {
+        fun obtain(context: Context): FragmentComponent =
+                (context.applicationContext as MainApplication).fragmentComponent()
+    }
 }

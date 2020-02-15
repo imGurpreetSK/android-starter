@@ -11,7 +11,6 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertThat(appContext.packageName)
-            .contains("com.gurpreetsk.android_starter")
+        assertThat(appContext.packageName).contains("com.gurpreetsk.android_starter")
     }
 }

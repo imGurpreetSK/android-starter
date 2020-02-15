@@ -2,179 +2,170 @@ apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
+apply plugin: "com.squareup.sqldelight"
+apply plugin: "de.mannodermaus.android-junit5"
 
 apply from: "../gradle/dependencies.gradle"
 
 android {
-  compileSdkVersion 28
+    compileSdkVersion versions.compileSdkVersion
 
-  defaultConfig {
-    applicationId "com.gurpreetsk.android_starter"
-    minSdkVersion versions.minSdkVersion
-    targetSdkVersion versions.targetSdkVersion
-    multiDexEnabled true
-    versionCode 1
-    versionName "0.0.1"
+    defaultConfig {
+        applicationId "com.gurpreetsk.android_starter"
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        multiDexEnabled true
 
-    vectorDrawables.useSupportLibrary = true
+        versionCode 1
+        versionName "0.0.1"
 
-    buildConfigField "String", "BASE_URL", "\"\"" // TODO(gs) - update base url.
-    buildConfigField "int", "DB_VERSION", "1"
+        vectorDrawables.useSupportLibrary = true
 
-    javaCompileOptions {
-      annotationProcessorOptions {
-        arguments = ["room.schemaLocation": "$projectDir/db-schemas".toString()]
-      }
+        buildConfigField "String", "BASE_URL", "\"\"" // TODO(gs) - update base url.
+        buildConfigField "int", "DB_VERSION", "1"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/db-schemas".toString()]
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-  }
+    buildTypes {
+        debug {
+            debuggable true
+            versionNameSuffix "-debug"
+            applicationIdSuffix ".debug"
 
-  buildTypes {
-    debug {
-      debuggable true
-      versionNameSuffix "-debug"
-      applicationIdSuffix ".debug"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
 
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            buildConfigField "String", "DB_NAME", "\"starter-db-debug\""
+        }
 
-      buildConfigField "String", "DB_NAME", "\"starter-db-debug\""
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+
+            buildConfigField "String", "DB_NAME", "\"starter-db\""
+        }
     }
 
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-
-      buildConfigField "String", "DB_NAME", "\"starter-db\""
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        debug.java.srcDirs += "src/debug/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+        androidTest.java.srcDirs += "src/androidTest/kotlin"
     }
-  }
 
-  sourceSets {
-    main.java.srcDirs        += "src/main/kotlin"
-    debug.java.srcDirs       += "src/debug/kotlin"
-    test.java.srcDirs        += "src/test/kotlin"
-    androidTest.java.srcDirs += "src/androidTest/kotlin"
-  }
-}
+    packagingOptions {
+        exclude "META-INF/LICENSE*"
+    }
 
-android {
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 androidExtensions {
-  experimental = true
+    experimental = true
 }
 
 kapt {
-  generateStubs = true
+    generateStubs = true
 }
 
 repositories {
-  jcenter()
+    jcenter()
 }
 
 configurations {
-  ktlint
+    ktlint
 }
 
 dependencies {
-  implementation fileTree(dir: "libs", include: ["*.jar"])
-  ktlint "com.github.shyiko:ktlint:0.31.0"
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    ktlint "com.github.shyiko:ktlint:0.31.0"
 
-  // Android KTX
-  implementation deps.androidKtx
+    // Android jetpack
+    implementation deps.androidx.ktx
+    implementation deps.androidx.preferences
+    implementation deps.androidx.fragments
 
-  // Coroutines
-  // TODO: Remove if not needed.
-  implementation deps.coroutines.core
-  implementation deps.coroutines.android
+    // Coroutines
+    implementation deps.coroutines.core
+    implementation deps.coroutines.android
 
-  // Chuck
-  debugImplementation   deps.chuck.operational
-  releaseImplementation deps.chuck.noOp
+    // Chuck
+    debugImplementation deps.chuck.operational
+    releaseImplementation deps.chuck.noOp
 
-  // Dagger 2
-  implementation deps.dagger.core
-  kapt           deps.dagger.compiler
+    // Dagger 2
+    implementation deps.dagger.core
+    kapt deps.dagger.compiler
 
-  // Kotlin stdlib
-  implementation deps.kotlinStdLib
+    // Kotlin stdlib
+    implementation deps.kotlinStdLib
 
-  // Leak canary
-  debugImplementation   deps.leakCanary.debug
-  releaseImplementation deps.leakCanary.release
+    // Leak canary
+    debugImplementation deps.leakCanary
 
-  // Logging
-  implementation deps.timber
+    // Logging
+    implementation deps.logging
 
-  // Moshi
-  implementation deps.moshi.core
-  implementation deps.moshi.adapters
-  kapt           deps.moshi.compiler
+    // Moshi
+    implementation deps.moshi.core
+    implementation deps.moshi.adapters
+    kapt deps.moshi.compiler
 
-  // okHttp
-  implementation deps.okhttp.core
-  implementation deps.okhttp.loggingInterceptor
+    // okHttp
+    implementation deps.okhttp.core
+    implementation deps.okhttp.loggingInterceptor
 
-  // Retrofit
-  implementation deps.retrofit.core
-  implementation deps.retrofit.rxjavaAdapter
-  implementation deps.retrofit.moshiAdapter
+    // Retrofit
+    implementation deps.retrofit.core
+    implementation deps.retrofit.rxjavaAdapter
+    implementation deps.retrofit.moshiAdapter
 
-  // Reactive Extensions
-  implementation deps.rx.kotlin
-  implementation deps.rx.java
-  implementation deps.rx.android
-  implementation deps.rx.relay
-  implementation deps.rx.bindings
+    // Reactive Extensions
+    implementation deps.rx.bindings
 
-  // Room
-  implementation deps.room.core
-  implementation deps.room.rxAdapter
-  kapt           deps.room.compiler
+    // Stetho
+    debugImplementation deps.stetho
 
-  // Stetho
-  debugImplementation deps.stetho
+    // Support
+    implementation deps.support.appCompat
+    implementation deps.support.material
+    implementation deps.support.vectorDrawable
+    implementation deps.support.constraintLayout
 
-  // Support
-  implementation deps.support.appCompat
-  implementation deps.support.material
-  implementation deps.support.vectorDrawable
-  implementation deps.support.constraintLayout
+    // Sqldelight
+    implementation deps.sqldelight
 
-  /* -----  Testing  ----- */
+    /* -----  Testing  ----- */
 
-  // JUnit testing
-  testImplementation "junit:junit:4.12"
-  testImplementation "com.google.truth:truth:1.0"
-  testImplementation "org.robolectric:robolectric:4.2.1"
+    testImplementation testDeps.unit.UnitTestingCore
+    testImplementation testDeps.unit.parameterized
+    testRuntimeOnly testDeps.unit.engine
+    testImplementation testDeps.truth
+    testImplementation testDeps.mockito
 
-  // Android test
-  androidTestImplementation "com.google.truth:truth:1.0"
-  androidTestImplementation "androidx.test:runner:1.2.0"
-  androidTestImplementation "androidx.test.ext:junit:1.1.1"
-  androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
-
-  // Mocking
-  testImplementation "org.mockito:mockito-core:2.28.2"
-  testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
-  androidTestImplementation "org.mockito:mockito-android:2.25.1"
-  androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
-
-  // Misc
-  testImplementation deps.room.testing
+    androidTestImplementation testDeps.android.androidRunner
+    androidTestImplementation testDeps.android.androidUnitTestingCore
+    androidTestImplementation testDeps.android.espressoCore
+    androidTestImplementation testDeps.truth
+    androidTestImplementation testDeps.mockito
 }
 
 android {
-  sourceSets {
-    debug {
-      manifest.srcFile "src/debug/AndroidManifest.xml"
+    sourceSets {
+        debug {
+            manifest.srcFile "src/debug/AndroidManifest.xml"
+        }
     }
-  }
 }
 
 apply from: "../gradle/ktlint.gradle"

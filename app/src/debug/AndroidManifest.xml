@@ -1,13 +1,11 @@
-<manifest
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gurpreetsk.android_starter"
+    xmlns:tools="http://schemas.android.com/tools">
 
-  <application
-    android:name="com.gurpreetsk.android_starter.DebugMainApplication"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    tools:replace="android:name, android:icon"
-    tools:ignore="GoogleAppIndexingWarning"
-    />
+    <application
+        android:name="com.gurpreetsk.android_starter.DebugMainApplication"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:name, android:icon" />
 </manifest>

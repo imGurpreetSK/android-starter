@@ -1,9 +1,10 @@
 package com.gurpreetsk.android_starter._schedulers
 
-import io.reactivex.Scheduler
+import kotlinx.coroutines.CoroutineDispatcher
 
+// TODO(gs) How can this be decoupled from Rx/Coroutines?
 interface AppSchedulers {
-  val computation: Scheduler
-  val io: Scheduler
-  val ui: Scheduler
+    val computation: CoroutineDispatcher
+    val io: CoroutineDispatcher
+    val ui: CoroutineDispatcher
 }

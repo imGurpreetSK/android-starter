@@ -17,23 +17,23 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
-  AppModule::class,
-  LogModule::class,
-  NetworkModule::class,
-  StorageModule::class
+    AppModule::class,
+    LogModule::class,
+    NetworkModule::class,
+    StorageModule::class
 ])
 interface AppComponent {
-  fun timberTree(): Timber.Tree
+    fun timberTree(): Timber.Tree
 
-  fun schedulerProvider(): AppSchedulers
-  fun appDatabase(): AppDatabase
-  fun appSettings(): AppSettings
-  fun repository(): Repository
+    fun schedulerProvider(): AppSchedulers
+    fun appDatabase(): AppDatabase
+    fun appSettings(): AppSettings
+    fun repository(): Repository
 
-  fun apiService(): StarterApi
+    fun apiService(): StarterApi
 
-  companion object {
-    fun obtain(context: Context): AppComponent =
-        (context.applicationContext as MainApplication).component()
-  }
+    companion object {
+        fun obtain(context: Context): AppComponent =
+                (context.applicationContext as MainApplication).component()
+    }
 }
